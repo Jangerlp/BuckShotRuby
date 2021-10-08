@@ -13,7 +13,6 @@ isInMainMenu = true
 song = Music.new('./assets/music.mp3', loop: true)
 song.volume = 5
 song.play
-song.loop = true
 
 unless File.exist?("ifYouTouchThisFileYouCheat.txt")
   File.write("ifYouTouchThisFileYouCheat.txt", 0)
