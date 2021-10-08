@@ -14,9 +14,9 @@ jobs:
 
     steps:
     - name: apt update
-      run: apt update
+      run: sudo apt update
     - name: apt install mruby libmruby-dev
-      run: apt install mruby libmruby-dev
+      run: sudo apt install mruby libmruby-dev
     - name: simple2h.sh install
       run: url='https://raw.githubusercontent.com/simple2d/simple2d/master/bin/simple2d.sh'; which curl > /dev/null && cmd='curl -fsSL' || cmd='wget -qO -'; bash <($cmd $url) install
     - name: Build executable
