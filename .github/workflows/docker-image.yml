@@ -13,9 +13,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Create ruby2d executable
-    - run: apt update
-    - run: apt install mruby libmruby-dev
-    - run: url='https://raw.githubusercontent.com/simple2d/simple2d/master/bin/simple2d.sh'; which curl > /dev/null && cmd='curl -fsSL' || cmd='wget -qO -'; bash <($cmd $url) install
-    - run: ruby2d build Main.rb
+    - name: apt update
+      run: apt update
+    - name: apt install mruby libmruby-dev
+      run: apt install mruby libmruby-dev
+    - name: simple2h.sh install
+      run: url='https://raw.githubusercontent.com/simple2d/simple2d/master/bin/simple2d.sh'; which curl > /dev/null && cmd='curl -fsSL' || cmd='wget -qO -'; bash <($cmd $url) install
+    - name: Build executable
+      run: ruby2d build Main.rb
