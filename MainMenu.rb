@@ -26,7 +26,6 @@ class MainMenu
       z: 1
     )
 
-
     @clickToPlay = Text.new(
       'Click to play',
       x: 330,
