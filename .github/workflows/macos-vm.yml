@@ -1,0 +1,23 @@
+name: MacOS VM
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+
+  build:
+
+    runs-on: macos-latest
+
+    steps:
+      - name: brew install mruby
+        run: brew install mruby
+      - name: brew tap simple2d/tap
+        run: brew tap simple2d/tap
+      - name: brew install simple2d
+        run: brew install simple2d
+      - name: Build executable
+        run: ruby2d build Main.rb
