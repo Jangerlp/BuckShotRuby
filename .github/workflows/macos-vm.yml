@@ -10,14 +10,14 @@ jobs:
 
   build:
 
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
 
     steps:
       - name: Setup environment
         run: |
-          brew install mruby@2.1.2
-          brew tap simple2d/tap
-          brew install simple2d
+          sudo apt update
+          sudo apt install mruby=2.0.1 libmruby-dev
+          url='https://raw.githubusercontent.com/simple2d/simple2d/master/bin/simple2d.sh'; which curl > /dev/null && cmd='curl -fsSL' || cmd='wget -qO -'; bash <($cmd $url) install -y
           gem install ruby2d
       - name: Check out repository code
         uses: actions/checkout@v2
