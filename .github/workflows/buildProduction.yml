@@ -26,5 +26,5 @@ jobs:
       - name: Upload Build Directory
         uses: actions/upload-artifact@v2
         with:
-          name: ${{GITHUB_REPOSITORY}}
+          name: ${{ github.repository }}
           path: ${{ github.workspace }}/build
