@@ -14,8 +14,16 @@ jobs:
 
     steps:
       - name: Setup environment
-        run: brew install mruby && brew tap simple2d/tap && brew install simple2d && gem install ruby2d
+        run: |
+          brew install mruby
+          brew tap simple2d/tap
+          brew install simple2d
+          gem install ruby2d
       - name: Check out repository code
         uses: actions/checkout@v2
       - name: Build executable
         run: ruby2d build --all ${{ github.workspace }}/Main.rb
+      - uses: actions/upload-artifact@v2
+        with:
+          name: Upload Build Directory
+          path: ${{ github.workspace }}/build
