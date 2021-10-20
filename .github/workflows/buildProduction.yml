@@ -18,11 +18,11 @@ jobs:
           sudo apt update
           sudo apt install ruby mruby libmruby-dev
           url='https://raw.githubusercontent.com/simple2d/simple2d/master/bin/simple2d.sh'; which curl > /dev/null && cmd='curl -fsSL' || cmd='wget -qO -'; bash <($cmd $url) install -y
-          gem install ruby2d
+          sudo gem install ruby2d
       - name: Check out repository code
         uses: actions/checkout@v2
       - name: Build executable
-        run: ruby2d build --native ${{ github.workspace }}/Main.rb
+        run: sudo ruby2d build --native ${{ github.workspace }}/Main.rb
       - name: Upload Build Directory
         uses: actions/upload-artifact@v2
         with:
