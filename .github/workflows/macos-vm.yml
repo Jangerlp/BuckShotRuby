@@ -22,4 +22,4 @@ jobs:
       - name: gem install ruby2d
         run: gem install ruby2d
       - name: Build executable
-        run: ruby2d build --all ./Main.rb
+        run: ruby2d build --all ${{ github.workspace }}/Main.rb
