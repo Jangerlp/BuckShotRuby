@@ -23,7 +23,8 @@ jobs:
         uses: actions/checkout@v2
       - name: Build executable
         run: ruby2d build --all ${{ github.workspace }}/Main.rb
-      - uses: actions/upload-artifact@v2
+      - name: Upload Build Directory
+        uses: actions/upload-artifact@v2
         with:
-          name: Upload Build Directory
+          name: BuckshotRuby
           path: ${{ github.workspace }}/build
