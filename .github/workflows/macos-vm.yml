@@ -23,3 +23,7 @@ jobs:
         run: gem install ruby2d
       - name: Build executable
         run: ruby2d build --all ${{ github.repository }}/Main.rb
+      - name: List files in the repository
+        run: |
+            ls ${{ github.workspace }}
+      - run: echo "🍏 This job's status is ${{ job.status }}."
