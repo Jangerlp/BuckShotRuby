@@ -21,7 +21,5 @@ jobs:
         run: brew install simple2d
       - name: gem install ruby2d
         run: gem install ruby2d
-      - name: List files in the repository
-        run: ls ${{ github.workspace }}
       - name: Build executable
-        run: ruby2d build --all /Users/runner/work/BuckShotRuby/Main.rb
+        run: ruby2d build --all ${{ github.repository }}/Main.rb
