@@ -15,7 +15,7 @@ jobs:
     steps:
       - name: Setup environment
         run: |
-          brew install mruby
+          brew install mruby@2.0.1
           brew tap simple2d/tap
           brew install simple2d
           gem install ruby2d
