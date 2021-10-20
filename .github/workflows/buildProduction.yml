@@ -1,4 +1,4 @@
-name: Build Production
+name: Build production
 
 on:
   push:
@@ -23,7 +23,7 @@ jobs:
         uses: actions/checkout@v2
       - name: Build executable
         run: sudo ruby2d build --all ${{ github.workspace }}/Main.rb
-      - name: Upload Build Directory
+      - name: Upload build directory
         uses: actions/upload-artifact@v2
         with:
           name: build
