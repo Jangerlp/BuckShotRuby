@@ -22,7 +22,7 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v2
       - name: Build executable
-        run: sudo ruby2d build ${{ github.workspace }}/main.rb
+        run: sudo ruby2d build --native --web --macos ${{ github.workspace }}/main.rb
       - name: Upload build directory
         uses: actions/upload-artifact@v2
         with:
