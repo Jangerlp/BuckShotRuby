@@ -1,12 +1,12 @@
 require 'ruby2d'
 
 class MainMenu
-  attr_reader :difficulty, :difficulty_button_shape
-  attr_writer :difficulty
+  attr_reader :difficulty_button_shape
+  attr_accessor :difficulty
 
   def initialize
     @difficulty = 0
-    @dy = 0
+    @text_move_dy = 0
   end
 
   def show
@@ -61,14 +61,14 @@ class MainMenu
     )
 
     @spawn_sound = Sound.new('./assets/Spawn.wav')
-    @spawn_sound.volume = 10
+    #@spawn_sound.volume = 10
 
     update_difficulty_button
   end
 
   def move_text
-    @dy = @dy + 0.1
-    pos = Math.sin(@dy) * 2
+    @text_move_dy = @text_move_dy + 0.1
+    pos = Math.sin(@text_move_dy) * 2
 
     @click_to_play_text.y = @click_to_play_text.y + pos
     @highscore.y = @click_to_play_text.y + 75

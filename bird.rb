@@ -1,13 +1,13 @@
 require 'ruby2d/image'
 
 class Bird
-  attr_reader :player
+  attr_reader :player, :bullet_count_text
   attr_accessor :bullets
 
   def initialize
 
     @dx = 2
-    @dy = 2
+    @text_move_dy = 2
     @bullets = 5
 
     @player = Image.new(
@@ -39,21 +39,21 @@ class Bird
     )
 
     @gun_shoot_sound = Sound.new('./assets/Gunshot.wav')
-    @gun_shoot_sound.volume = 5
+    #@gun_shoot_sound.volume = 5
 
     @gun_out_of_ammo_sound = Sound.new('./assets/CantShoot.wav')
-    @gun_out_of_ammo_sound.volume = 10
+    #@gun_out_of_ammo_sound.volume = 10
   end
 
   def move
-    @dy = @dy + 0.4
+    @text_move_dy = @text_move_dy + 0.4
     @dx = @dx * 0.8
 
-    if @dy > 10
-      @dy = 10
+    if @text_move_dy > 10
+      @text_move_dy = 10
     end
 
-    @player.y = @player.y + @dy
+    @player.y = @player.y + @text_move_dy
     @player.x = @player.x + @dx
 
     if @player.x > 1000
@@ -91,7 +91,7 @@ class Bird
     end
 
     @dx = move_x
-    @dy = move_y
+    @text_move_dy = move_y
     @bullets = @bullets - 1
     @bullet_count_text.text = @bullets
 

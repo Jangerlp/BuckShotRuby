@@ -12,11 +12,11 @@ class Obstacle < GameObject
   def randomize_location_and_speed
     @object.y = 0
     @object.x = rand(100...900)
-    @dy = rand(3...6)
+    @text_move_dy = rand(3...6)
   end
 
   def move
-    @object.y = @object.y + @dy
+    @object.y = @object.y + @text_move_dy
     if @object.y > 1000
       randomize_location_and_speed
     end
