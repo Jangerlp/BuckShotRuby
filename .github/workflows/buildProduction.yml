@@ -19,7 +19,11 @@ jobs:
           sudo apt install ruby mruby libmruby-dev
           url='https://raw.githubusercontent.com/simple2d/simple2d/master/bin/simple2d.sh'; which curl > /dev/null && cmd='curl -fsSL' || cmd='wget -qO -'; bash <($cmd $url) install -y
           sudo gem install ruby2d
-          git clone https://github.com/emscripten-core/emsdk.git && cd emsdk && ./emsdk install latest && ./emsdk activate latest && source ./emsdk_env.sh
+          git clone https://github.com/emscripten-core/emsdk.git
+          cd emsdk
+          ./emsdk install latest
+          ./emsdk activate latest
+          source ./emsdk_env.sh
       - name: Check out repository code
         uses: actions/checkout@v2
       - name: Build executable
