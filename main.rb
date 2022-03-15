@@ -11,7 +11,7 @@ set height: 1000
 is_in_main_menu = true
 
 song = Music.new('./assets/music.mp3', loop: true)
-song.volume = 5
+#song.volume = 5
 song.play
 
 unless File.exist?("highscore.txt")

@@ -10,11 +10,11 @@ class Game
     @game_over = false
     @bullets = []
     @game_over_sound = Sound.new('./assets/Error.wav')
-    @game_over_sound.volume = 5
+    #@game_over_sound.volume = 5
     @gun_reload_sound = Sound.new('./assets/Reload.wav')
-    @gun_reload_sound.volume = 5
+    #@gun_reload_sound.volume = 5
     @spawn_sound = Sound.new('./assets/Spawn.wav')
-    @spawn_sound.volume = 10
+    #@spawn_sound.volume = 10
   end
 
   def start(difficulty)
@@ -80,10 +80,10 @@ class Game
   end
 
   def set_highscore
-    if File.exist?("ifYouTouchThisFileYouCheat.txt")
-      current_highscore = File.read("ifYouTouchThisFileYouCheat.txt")
+    if File.exist?("highscore.txt")
+      current_highscore = File.read("highscore.txt")
       if @score > Integer(current_highscore)
-        File.write("ifYouTouchThisFileYouCheat.txt", @score)
+        File.write("highscore.txt", @score)
       end
     end
   end
