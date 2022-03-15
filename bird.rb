@@ -1,8 +1,8 @@
 require 'ruby2d/image'
 
 class Bird
-  attr_reader :player, :bullets, :bulletText
-  attr_writer :dy, :dy, :bullets
+  attr_reader :player
+  attr_accessor :bullets
 
   def initialize
 
@@ -16,7 +16,7 @@ class Bird
       width: 65, height: 78,
       z: 2
     )
-    @outOfBoundsCircle = Circle.new(
+    @out_of_bounds_circle = Circle.new(
       x: @player.x, y: 30,
       radius: 10,
       color: 'silver'
@@ -29,7 +29,7 @@ class Bird
       z: 1
     )
 
-    @bulletText = Text.new(
+    @bullet_count_text = Text.new(
       @bullets,
       x: 320,
       y: 200,
@@ -38,11 +38,11 @@ class Bird
       font: './assets/Montserrat-ExtraBold.ttf'
     )
 
-    @gunShotSound = Sound.new('./assets/Gunshot.wav')
-    @gunShotSound.volume = 5
+    @gun_shoot_sound = Sound.new('./assets/Gunshot.wav')
+    @gun_shoot_sound.volume = 5
 
-    @gunOutOfAmoSound = Sound.new('./assets/CantShoot.wav')
-    @gunOutOfAmoSound.volume = 10
+    @gun_out_of_ammo_sound = Sound.new('./assets/CantShoot.wav')
+    @gun_out_of_ammo_sound.volume = 10
   end
 
   def move
@@ -56,61 +56,56 @@ class Bird
     @player.y = @player.y + @dy
     @player.x = @player.x + @dx
 
-
-    if(@player.x > 1000)
+    if @player.x > 1000
       @player.x = 0
-    elsif(@player.x < 0)
+    elsif @player.x < 0
       @player.x = 1000
     end
 
-    if(@player.y < 0)
-      @outOfBoundsCircle.color = 'maroon'
-      @outOfBoundsCircle.x = @player.x + 20
+    if @player.y < 0
+      @out_of_bounds_circle.color = 'maroon'
+      @out_of_bounds_circle.x = @player.x + 20
     else
-      @outOfBoundsCircle.color = 'silver'
+      @out_of_bounds_circle.color = 'silver'
     end
-
-
 
     @gun.x = @player.x - 80
     @gun.y = @player.y - 60
   end
 
-  def shot(mouseX, mouseY)
-    if(@bullets == 0)
-      @gunOutOfAmoSound.play
+  def shot(mouse_x, mouse_y)
+    if @bullets == 0
+      @gun_out_of_ammo_sound.play
       return
     end
 
+    move_x = ((@player.x + @player.width/2) - mouse_x) * 0.3
+    move_y = (@player.y - mouse_y) * 0.03
 
-    moveX = ((@player.x + @player.width/2) - mouseX) * 0.3
-
-    moveY = (@player.y - mouseY) * 0.03
-
-    if moveY < -75
-      moveY = -75
+    if move_y < -75
+      move_y = -75
     end
 
     if @player.y < 0
-      moveY = 0
+      move_y = 0
     end
 
-    @dx = moveX
-    @dy = moveY
+    @dx = move_x
+    @dy = move_y
     @bullets = @bullets - 1
-    @bulletText.text = @bullets
+    @bullet_count_text.text = @bullets
 
-    @gunShotSound.play
+    @gun_shoot_sound.play
   end
 
-  def rotateGun(mouseX, mouseY)
-    width = (@player.x + @player.width/2) - mouseX
-    height = (@player.y + @player.height/2) - mouseY
+  def rotate_gun(mouse_x, mouse_y)
+    width = (@player.x + @player.width/2) - mouse_x
+    height = (@player.y + @player.height/2) - mouse_y
 
     angle = Math.atan(height/width) * (180 / 3.14)
 
     if width >= 0
-      angle = angle - 180
+      angle -= 180
     end
 
     @gun.rotate = angle

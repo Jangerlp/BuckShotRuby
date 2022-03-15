@@ -1,7 +1,7 @@
 require 'ruby2d'
 
 class MainMenu
-  attr_reader :difficulty, :difficultyButton
+  attr_reader :difficulty, :difficulty_button_shape
   attr_writer :difficulty
 
   def initialize
@@ -26,7 +26,7 @@ class MainMenu
       z: 1
     )
 
-    @clickToPlay = Text.new(
+    @click_to_play_text = Text.new(
       'Click to play',
       x: 330,
       y: 600,
@@ -44,7 +44,7 @@ class MainMenu
       font: './assets/Montserrat-ExtraBold.ttf'
     )
 
-    @difficultyButton = Rectangle.new(
+    @difficulty_button_shape = Rectangle.new(
       x: 350,
       y: 850,
       width: 300,
@@ -52,7 +52,7 @@ class MainMenu
       color: 'lime'
     )
 
-    @difficultyText = Text.new(
+    @difficulty_button_text = Text.new(
       "Easy",
       x: 450,
       y: 865,
@@ -60,33 +60,33 @@ class MainMenu
       size: 40
     )
 
-    @spawnSound = Sound.new('./assets/Spawn.wav')
-    @spawnSound.volume = 10
+    @spawn_sound = Sound.new('./assets/Spawn.wav')
+    @spawn_sound.volume = 10
 
-    updateDifficultyButton
+    update_difficulty_button
   end
 
-  def moveText
+  def move_text
     @dy = @dy + 0.1
     pos = Math.sin(@dy) * 2
 
-    @clickToPlay.y = @clickToPlay.y + pos
-    @highscore.y = @clickToPlay.y + 75
+    @click_to_play_text.y = @click_to_play_text.y + pos
+    @highscore.y = @click_to_play_text.y + 75
 
   end
 
-  def setHighScore
-    txt = File.read("ifYouTouchThisFileYouCheat.txt")
+  def set_highscore
+    txt = File.read("highscore.txt")
     @highscore.text = "Highscore: #{txt}"
   end
 
-  def updateDifficultyButton
-    @spawnSound.play
+  def update_difficulty_button
+    @spawn_sound.play
 
     difficulties = ["Easy", "Hard", "GOD"]
-    difficultyColors = ["lime", "orange", "red"]
+    difficulty_colors = ["lime", "orange", "red"]
 
-    @difficultyButton.color = difficultyColors[@difficulty]
-    @difficultyText.text = difficulties[@difficulty]
+    @difficulty_button_shape.color = difficulty_colors[@difficulty]
+    @difficulty_button_text.text = difficulties[@difficulty]
   end
 end
