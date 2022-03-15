@@ -1,4 +1,5 @@
-#Buck Shot Ruby 🔫
+<h1>Buck Shot Ruby 🔫</h1>
+
 This is a recreation of [Barji's](https://www.youtube.com/c/BarjiGames) Buck Shot Game implemented in ruby with [ruby2d](https://www.ruby2d.com/).
 
 ## The game 🎮
